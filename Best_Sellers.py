@@ -5,9 +5,9 @@
 
 def main():
  
-    book_list()
+    book = book_list()
 
-    menu()
+    menu(book)
 
 
 
@@ -17,18 +17,20 @@ def book_list():
     book =[]
     count = 0
     
-    for line in file:
-        l = line.split('\t')
-        book.append(l)
-        count += 1
-    print(book)
+    for line in file.readlines():
+        l=line.strip('\n')
+        cols=l.split('\t')
+        book.append(cols)
+        count+=1
     print(count)
+    #print(book)
+    
     
     return book
     
 
 
-def menu():
+def menu(book):
     print('What would you like to do?')
     print('1: look up year range')
     print('2: Look up month/year')
@@ -37,20 +39,20 @@ def menu():
     print('Q: Quit')
     Q = input()
     if Q == '1':
-        year_range()
+        year_range(book)
     elif Q == '2':
-        month_year()
+        month_year(book)
     elif Q == '3':
-        author()
+        author(book)
     elif Q == '4':
-        title(book_list)
+        title(book)
     elif Q == 'Q':
         exit()
     else:
         print('')
         print('Please enter one of the optoins above')
         print('')
-        menu()
+        menu(book)
    
 
     
@@ -72,26 +74,40 @@ def month_year():
    '''
     menu()
     
-def author():
-    input('Enter an author: ')
-    menu()
+def author(book):
+    s = input('Enter the author: ')
+    s = s.lower()
+
+
+    for entry in range(0,len(book)):
+        # TITLE -> book[entry][0]
+        author = book[entry][1].lower()
+        if s in author:
+            print(book[entry][0],book[entry][1],book[entry][2])
+        
+#        if t.find(s)!= -1:
+#            print(t)
+    menu(book)
+    
     
 def title(book):
+                           
+    s = input('Enter the title: ')
+    s = s.lower()
 
-         
-         
-         
-        
-        
-        
 
-    for title in line:
-        print(line)
+    for entry in range(0,len(book)):
+        # TITLE -> book[entry][0]
+        title = book[entry][0].lower()
+        if s in title:
+            print(book[entry][0],book[entry][1],book[entry][2])
         
-    menu()
+#        if t.find(s)!= -1:
+#            print(t)
+    menu(book)
+    
     
 def Quit():
     print('done')
-    
     
 main()
