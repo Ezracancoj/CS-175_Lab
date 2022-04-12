@@ -100,7 +100,8 @@ def title(book):
         # TITLE -> book[entry][0]
         title = book[entry][0].lower()
         if s in title:
-            print(book[entry][0],book[entry][1],book[entry][2])
+# I'm not sure what the 2nd name is
+            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
         
 #        if t.find(s)!= -1:
 #            print(t)
