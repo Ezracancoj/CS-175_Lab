@@ -27,8 +27,6 @@ def book_list():
     
     
     return book
-    
-
 
 def menu(book):
     print('What would you like to do?')
@@ -56,23 +54,33 @@ def menu(book):
    
 
     
-def year_range():
+def year_range(book):
     input('Enter a starting yaer: ')
     input('Enter an ending yaer: ')
     menu()
     
     
-def month_year():
+def month_year(book):
+    count = 0
+    book_len = len(book)
+    date_list = []
+    
+    for book_len in book:
+        date = book[count] [3].split('/')
+        date_list.append(date)
+        count += 1
+    
     month = input('Enter a month(number): ')
     year = input('Enter a year: ')
-    '''
-    bestsellers_file = open('besstsellers.txt','r')
 
-    for line in bestsellers_fille:
-        if year in line:
-            books += line
-   '''
-    menu()
+    if :
+        print(book[date][0],book[entry][1],book[entry][2])
+    else:
+        print('')
+        print('Book not found')
+        print('')
+    
+    menu(book)
     
 def author(book):
     s = input('Enter the author: ')
@@ -83,7 +91,7 @@ def author(book):
         # TITLE -> book[entry][0]
         author = book[entry][1].lower()
         if s in author:
-            print(book[entry][0],book[entry][1],book[entry][2])
+            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
         
 #        if t.find(s)!= -1:
 #            print(t)
