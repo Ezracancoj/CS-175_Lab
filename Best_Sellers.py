@@ -5,9 +5,9 @@
 
 def main():
  
-    book = book_list()
+    book, file = book_list()
 
-    menu(book)
+    menu(book, file)
 
 
 
@@ -18,17 +18,15 @@ def book_list():
     count = 0
     
     for line in file.readlines():
-        l=line.strip('\n')
-        cols=l.split('\t')
+        l = line.strip('\n')
+        cols = l.split('\t')
         book.append(cols)
-        count+=1
+        count += 1
     print(count)
-    #print(book)
     
-    
-    return book
+    return book, file
 
-def menu(book):
+def menu(book, file):
     print('What would you like to do?')
     print('1: look up year range')
     print('2: Look up month/year')
@@ -36,6 +34,7 @@ def menu(book):
     print('4: Search for title')
     print('Q: Quit')
     Q = input()
+    
     if Q == '1':
         year_range(book)
     elif Q == '2':
@@ -50,37 +49,46 @@ def menu(book):
         print('')
         print('Please enter one of the optoins above')
         print('')
-        menu(book)
+        menu(book, file)
    
 
     
 def year_range(book):
-    input('Enter a starting yaer: ')
-    input('Enter an ending yaer: ')
-    menu()
+    start = int(input('Enter a starting yaer: '))
+    end = int(input('Enter an ending yaer: '))
+
+    for entry in range(0,len(book)):
+        date = book[entry] [3].split('/')
+        year = date[2]
+        
+
+        
+        if year >= start and yaer <= end:
+            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
+        
+    menu(book, file)
     
     
 def month_year(book):
-    count = 0
-    book_len = len(book)
-    date_list = []
     
-    for book_len in book:
-        date = book[count] [3].split('/')
-        date_list.append(date)
-        count += 1
+    imonth = int(input('Enter a month(number): '))
+    iyear = int(input('Enter a year: '))
     
-    month = input('Enter a month(number): ')
-    year = input('Enter a year: ')
+    for entry in range(0,len(book)):
+        date = book[entry] [3].split('/')
+        year = date[2]
+        month = date[0]
+        
+        if int(month) == imonth and int(year) == iyear:
+            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
+            
+            
+        
+       
 
-    if :
-        print(book[date][0],book[entry][1],book[entry][2])
-    else:
-        print('')
-        print('Book not found')
-        print('')
+   
     
-    menu(book)
+    menu(book, file)
     
 def author(book):
     s = input('Enter the author: ')
@@ -95,7 +103,7 @@ def author(book):
         
 #        if t.find(s)!= -1:
 #            print(t)
-    menu(book)
+    menu(book,file)
     
     
 def title(book):
@@ -111,12 +119,14 @@ def title(book):
 # I'm not sure what the 2nd name is
             print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
         
-#        if t.find(s)!= -1:
-#            print(t)
-    menu(book)
+
+    menu(book, file)
     
     
-def Quit():
+def Quit(file):
+    print('')
     print('done')
+    print('')
+    file.closes()
     
 main()
