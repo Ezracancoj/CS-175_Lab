@@ -4,10 +4,12 @@
 # Ez Racancoj
 
 def main():
- 
-    book, file = book_list()
 
-    menu(book, file)
+    print(book_list())
+ 
+    book = book_list()
+
+    menu(book)
 
 
 
@@ -22,11 +24,10 @@ def book_list():
         cols = l.split('\t')
         book.append(cols)
         count += 1
-    print(count)
     
-    return book, file
+    return book
 
-def menu(book, file):
+def menu(book):
     print('What would you like to do?')
     print('1: look up year range')
     print('2: Look up month/year')
@@ -44,12 +45,12 @@ def menu(book, file):
     elif Q == '4':
         title(book)
     elif Q == 'Q':
-        exit()
+        Quit()
     else:
         print('')
         print('Please enter one of the optoins above')
         print('')
-        menu(book, file)
+        menu(book)
    
 
     
@@ -60,13 +61,14 @@ def year_range(book):
     for entry in range(0,len(book)):
         date = book[entry] [3].split('/')
         year = date[2]
-        
 
         
-        if year >= start and yaer <= end:
-            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
+        if int(year) >= start and int(year) <= end:
+            print('')
+            print(f'{book[entry][0]}, by: {book[entry][1]}, (pub date: {book[entry][3]})')
+    print('')
         
-    menu(book, file)
+    menu(book)
     
     
 def month_year(book):
@@ -80,15 +82,11 @@ def month_year(book):
         month = date[0]
         
         if int(month) == imonth and int(year) == iyear:
-            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
-            
-            
-        
-       
-
-   
+            print('')
+            print(f'{book[entry][0]}, by: {book[entry][1]}, (pub date: {book[entry][3]})')
+    print('')
     
-    menu(book, file)
+    menu(book)
     
 def author(book):
     s = input('Enter the author: ')
@@ -96,14 +94,14 @@ def author(book):
 
 
     for entry in range(0,len(book)):
-        # TITLE -> book[entry][0]
+
         author = book[entry][1].lower()
         if s in author:
-            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
+            print('')
+            print(f'{book[entry][0]}, by: {book[entry][1]}, (pub date: {book[entry][3]})')
+    print('')
         
-#        if t.find(s)!= -1:
-#            print(t)
-    menu(book,file)
+    menu(book)
     
     
 def title(book):
@@ -116,17 +114,15 @@ def title(book):
         # TITLE -> book[entry][0]
         title = book[entry][0].lower()
         if s in title:
-# I'm not sure what the 2nd name is
-            print(f'{book[entry][0]}, by {book[entry][1]}, and? {book[entry][2]}, published in {book[entry][3]}, genre {book[entry][4]}')
+            print('')
+            print(f'{book[entry][0]}, by: {book[entry][1]}, (pub date: {book[entry][3]})')
+    print('')
         
 
-    menu(book, file)
+    menu(book)
     
     
-def Quit(file):
-    print('')
-    print('done')
-    print('')
-    file.closes()
+def Quit():
+    exit()
     
 main()
