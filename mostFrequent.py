@@ -15,11 +15,8 @@ def main():
     
     
 def most_frequent(List):
-    return max(set(List), key = List.count)
-
-
-
-
+    i = max(set(List), key = List.count)
+    return i
 
 
 main()
